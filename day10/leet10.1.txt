@@ -1,0 +1,29 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        boolean flag=false;
+        int n=nums.length;
+        for(int i=0;i<n-1;i++){
+            if(nums[n-i-1]>nums[n-i-2]){
+                flag=true;
+                int min=nums[n-i-1];
+                int minIndex=n-i-1;
+                for(int j=n-i-1;j<n;j++){
+                    if(min>nums[j] && nums[j]>nums[n-i-2]){
+                        min=nums[j];
+                        minIndex=j;
+                    }
+                }
+                int temp=nums[n-i-2];
+                nums[n-i-2]=min;
+                nums[minIndex]=temp;
+                Arrays.sort(nums,n-i-1,n);
+                System.out.print(Arrays.toString(nums));
+                break;
+            }
+        }
+        if(flag==false){
+            Arrays.sort(nums);
+            System.out.print(Arrays.toString(nums));
+        }
+    }
+}
