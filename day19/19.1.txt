@@ -1,0 +1,20 @@
+class Solution {
+    public String compressedString(String word) {
+        String comp="";
+        for(int i=0;i<word.length();i++){
+            
+            int count=0;
+            int j=i;
+            while((j<word.length()) && (word.charAt(j)==word.charAt(i))){
+                count++;
+                j++;
+                if(count==9){
+                    break;
+                }
+            }
+            comp=comp+count+word.charAt(i);
+            i=j-1;
+        }
+        return comp;
+    }
+}
