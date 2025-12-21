@@ -1,0 +1,13 @@
+class Solution {
+    public int numWaterBottles(int numBottles, int numExchange) {
+        int  n=numBottles;
+        int e=numExchange;
+        int res=n+(n/e);
+        int part=n%e+n/e;
+        while((n%e+n/e)>=e){
+            res=res+(n%e+n/e)/e;
+            n=n%e+n/e;
+        }
+        return res;
+    }
+}
