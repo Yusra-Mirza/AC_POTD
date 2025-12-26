@@ -1,0 +1,60 @@
+class myQueue {
+
+    int rear;
+    int front;
+    int arr[];
+    public myQueue(int n) {
+        arr=new int[n];
+        rear=-1;
+        front=-1;
+    }
+
+    public boolean isEmpty() {
+        if(rear==-1 || front>rear){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isFull() {
+        if((rear-front)==arr.length-1){
+            return true;
+        }
+        return false;
+    }
+
+    public void enqueue(int x) {
+        if(rear<arr.length-1){
+            rear++;
+            arr[rear]=x;
+        }
+        if(front==-1){
+            front++;
+        }
+    }
+
+    public void dequeue() {
+        if(rear!=-1 && front<=rear){
+            front++;
+         }
+         if(front>rear){
+             front=-1;
+             rear=-1;
+         }
+        
+    }
+
+    public int getFront() {
+        if(front!=-1 && front<=rear){
+            return arr[front];
+        }
+        return -1;
+    }
+
+    public int getRear() {
+        if(rear!=-1 && front<=rear){
+            return arr[rear];
+        }
+        return -1;
+    }
+}
