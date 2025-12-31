@@ -1,0 +1,22 @@
+class Solution {
+    public ArrayList<Integer> calculateSpan(int[] arr) {
+        // code here
+        ArrayList <Integer> list = new ArrayList<>();
+        int pgeIndex;
+        Stack <Integer> stk = new Stack<>();
+        for(int i=0;i<arr.length;i++){
+            while(!(stk.isEmpty()) && arr[stk.peek()]<=arr[i]){
+                stk.pop();
+            }
+            if(stk.isEmpty()){
+                pgeIndex=-1;
+            }
+            else{
+                pgeIndex=stk.peek();
+            }
+            list.add(i-pgeIndex);
+            stk.push(i);
+        }
+        return list;
+    }
+}

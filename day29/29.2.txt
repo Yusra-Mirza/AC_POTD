@@ -1,0 +1,32 @@
+class Solution {
+    public int evaluatePostfix(String[] arr) {
+        Stack <Integer> stk = new Stack<>();
+        for(String token:arr){
+            
+            if(token.matches("-?\\d+")){
+            int x =Integer.parseInt(token);
+            stk.push(x);
+            }
+            else{
+                if(!stk.isEmpty()){
+                int t1=stk.pop();
+                int t2=stk.pop();
+                int res=0;
+                switch(token){
+                    case "+":res=t1+t2;
+                    break;
+                    case "-":res=t2-t1;
+                    break;
+                    case "/":res=(int)Math.floor(t2/(float)t1);
+                    break;
+                    case "*":res=t2*t1;
+                    break;
+                    case "^":res=(int)Math.pow(t2,t1);
+                }
+                stk.push(res);
+                }
+            }
+        }
+        return stk.pop();
+    }
+}
