@@ -1,0 +1,51 @@
+class Solution {
+
+    public int largestRectangleArea(int[] heights) {
+        int max=Integer.MIN_VALUE;
+        int nsearr[]=nse(heights);
+        int psearr[]=pse(heights);
+        for(int i=0;i<heights.length;i++){
+            int var=(nsearr[i]-psearr[i]-1)*heights[i];
+            if(var>max){
+                max=var;
+            }
+        }
+        return max;
+    }
+    public int[] pse(int []heights){
+        Stack <Integer> stk= new Stack<>();
+        int psearr[]=new int[heights.length];
+        for(int i=0;i<heights.length;i++){
+            
+            while(!stk.isEmpty() && heights[stk.peek()]>=heights[i]){
+                stk.pop();
+            }
+            if(stk.isEmpty()){
+                psearr[i]=-1;
+            }
+            else{
+                psearr[i]=stk.peek();
+            }
+            stk.push(i);
+        }
+        return psearr;
+    }
+    public int[] nse(int [] heights){
+        Stack <Integer> stk = new Stack<>();
+        int [] nsearr=new int[heights.length];
+        for(int i=heights.length-1;i>=0;i--){
+           
+            while(!stk.isEmpty() && heights[stk.peek()]>=heights[i]){
+                stk.pop();
+            }
+            if(stk.isEmpty()){
+                nsearr[i]=heights.length;
+            }
+            else{
+                nsearr[i]=stk.peek();
+            }
+            stk.push(i);
+        }
+        return nsearr;
+    }
+}
