@@ -1,0 +1,42 @@
+class Solution {
+    public String firstNonRepeating(String s) {
+        // code here
+        HashMap <Character,Integer> hm = new HashMap<>();
+        Queue <Character> queue = new LinkedList<>();
+        StringBuilder sb = new StringBuilder();
+        char key='#';
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            hm.put(ch,hm.getOrDefault(ch,0)+1);
+    
+                queue.offer(ch);
+            
+                
+                
+            
+            if(!(queue.isEmpty())){
+                
+                while((!(queue.isEmpty())) && hm.get(queue.peek())>1 ){
+                    queue.poll();
+                    
+                }
+                if(queue.isEmpty()){
+                    key='#';
+                }
+                else{
+                    key=queue.peek();
+                }
+                
+            }
+            
+            
+           
+            sb.append(key);
+        }
+                
+            
+            
+             return sb.toString();
+        }
+       
+    }
