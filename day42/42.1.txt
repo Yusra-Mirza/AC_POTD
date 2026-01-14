@@ -1,0 +1,25 @@
+class Solution {
+    public int celebrity(int mat[][]) {
+        for(int i=0;i<mat.length;i++){
+            boolean flag=true;
+            for(int j=0;j<mat.length;j++){
+                if((mat[i][j]!=0) && j!=i){
+                    flag=false;
+                    break;
+                }
+            }
+            if(flag){
+                for(int j=0;j<mat.length;j++){
+                    if(mat[j][i]!=1 && j!=i){
+                        flag=false;
+                        break;
+                    }
+                }
+            }
+            if(flag){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
