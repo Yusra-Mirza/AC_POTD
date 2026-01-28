@@ -1,0 +1,45 @@
+class Solution {
+    public int aggressiveCows(int[] stalls, int k) {
+       
+        Arrays.sort(stalls);
+     
+        int low=1;
+        int high=stalls[stalls.length-1];
+        
+        int ans=0;
+        // for(int i=1;i<=(maxEl-minEl);i++){
+        //     if(isPossible(stalls,i,k)){
+        //         ans=i;
+        //     }
+        //     else{
+        //         break;
+        //     }
+        // }
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(isPossible(stalls,mid,k)){
+                ans=mid;
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+        return high;
+    }
+    public boolean isPossible(int stalls[],int n,int k){
+        int cnt=1;
+        int prev=stalls[0];
+        for(int i=1;i<stalls.length;i++){
+            if(stalls[i]-prev>=n){
+                cnt++;
+                prev=stalls[i];
+            }
+            
+            if(cnt==k){
+                return true;
+            }
+        }
+        return false;
+    }
+}
