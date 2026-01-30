@@ -1,0 +1,42 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int getMaximumSweetness(ArrayList<Integer> arr, int k) {
+		
+		int low=Integer.MAX_VALUE;
+		int high=0;
+		for(int i=0;i<arr.size();i++){
+			high+=arr.get(i);
+			if(low>arr.get(i)){
+				low=arr.get(i);
+			}
+		}
+		int ans=0;
+		while(low<=high){
+			int mid=(low+high)/2;
+			if(isPossible(arr,mid)>=k+1){
+				ans=mid;
+				low=mid+1;
+			}
+			else{
+				high=mid-1;
+			}
+		}
+		return ans;
+	}
+	public static int isPossible(ArrayList <Integer> list,int x){
+		int sum=0;
+		int cnt=0;
+		
+		for(int i=0;i<list.size();i++){
+			if(sum+list.get(i)>=x){
+				cnt++;
+				sum=0;
+			}
+			else{
+				sum+=list.get(i);
+			}
+		}
+		return cnt;
+	}
+}
