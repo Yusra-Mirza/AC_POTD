@@ -1,0 +1,14 @@
+class Solution {
+    static void printTillN(int N) {
+        printTillN(1,N);
+        
+    }
+    static void printTillN(int i,int N){
+        if(i==N){
+            System.out.print(i);
+            return;
+        }
+        System.out.print(i+" ");
+        printTillN(i+1);
+    }
+}

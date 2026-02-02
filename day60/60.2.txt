@@ -1,0 +1,15 @@
+class Solution {
+    public static int findSum(int n) {
+        int sumOfN=0;
+        return sum(sumOfN,n);
+        
+    }
+    public static int sum(int sumOfN,int n){
+        if(n==0){
+            return sumOfN;
+        }
+        sumOfN+=n;
+        return sum(sumOfN,n-1);
+        
+    }
+}
